@@ -1,0 +1,11 @@
+<h2>Options</h2>
+
+<button (click)="show='chat'">Show Chat</button>
+<button (click)="show='stories'">Show Stories</button>
+<button (click)="show='train'">Train</button>
+
+<ng-ai-chatbot-chat *ngIf="show === 'chat'"></ng-ai-chatbot-chat>
+
+<ng-ai-chatbot-stories *ngIf="show === 'stories'"></ng-ai-chatbot-stories>
+<ng-ai-chatbot-train *ngIf="show === 'train'"></ng-ai-chatbot-train>
+<!-- <ng-ai-chatbot-story></ng-ai-chatbot-story> -->
