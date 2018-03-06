@@ -8,23 +8,25 @@ import { ChatService } from './chat/chat.service';
 import { StoryComponent } from './story/story.component';
 import {
   MatToolbarModule, MatIconModule, MatCardModule,
-  MatButtonModule, MatDialogModule, MatCheckboxModule
+  MatButtonModule, MatDialogModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
+  MatListModule, MatGridListModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoryDialogComponent } from './story/storydialog.component';
 import { TrainDialogComponent } from './story/traindialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
-    MatCardModule, MatButtonModule, MatDialogModule,
-    MatCheckboxModule, MatIconModule,
-    MatToolbarModule, MatIconModule,
-    // MatToolbarModule
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatInputModule, MatCardModule, MatButtonModule, MatDialogModule,
+    MatCheckboxModule, MatIconModule, MatListModule, MatGridListModule,
+    MatToolbarModule, MatIconModule, MatFormFieldModule // MatToolbarModule
   ],
   declarations: [
     ChatComponent, StoriesComponent, StoryComponent, TrainComponent,

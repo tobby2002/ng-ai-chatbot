@@ -12,6 +12,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class DemoComponent implements OnInit {
 
   public show = 'chat';
+  public debug = false;
 
   constructor() {
 

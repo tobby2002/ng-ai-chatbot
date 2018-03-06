@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
+import { CoreService } from '../core/core.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class ChatService {
+export class ChatService extends CoreService {
 
-  constructor() { }
+  constructor(public http: HttpClient) {
+    super(http);
+  }
+
+  send(intent) {
+    return this.doPost(`/api/v1`, intent);
+  }
 
 }

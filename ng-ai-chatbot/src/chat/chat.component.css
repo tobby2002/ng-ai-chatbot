@@ -1,0 +1,17 @@
+@import "../flexboxgrid.css";
+
+.textright {
+    text-align: right;
+}
+
+.textleft {
+    text-align: left;
+}
+
+.textcenter {
+    text-align: center;
+}
+
+.fullwidth {
+    width: 100%;
+}
