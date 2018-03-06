@@ -54,11 +54,19 @@ export class AppComponent {
   }
 
 }
-
+```
 
 Remember to install angular material and others, check the dependencies:
 
-
+``` 
+    "@angular/core": ">=5.0.0",
+    "@angular/common": ">=5.0.0",
+    "@angular/material": ">=5.0.0",
+    "@angular/cdk": ">=5.0.0",
+    "@angular/platform-browser": ">=5.0.0",
+    "@angular/platform-browser-dynamic": ">=5.0.0",
+    "@angular/animations": ">=5.0.0" 
+```
 
 # Components
 
