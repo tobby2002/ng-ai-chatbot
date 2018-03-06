@@ -1,1 +1,5 @@
 @import "../core/flexboxgrid.css";
+section.parameters {
+    overflow-y: auto;
+    height: 200px;
+}

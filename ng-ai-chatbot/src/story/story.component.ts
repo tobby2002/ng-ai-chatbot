@@ -37,13 +37,8 @@ export class StoryComponent implements OnInit {
       storyName: [''],
       intentName: [''],
       speechResponse: [''],
-      jsonData: [''],
-      apiDetails: this.fb.group({
-        apiTrigger: [''],
-        isJson: [''],
-        url: [''],
-        requestType: [''],
-      }),
+      apiTrigger: [''],
+      apiDetails: this.initApiDetails(),
       parameters: this.fb.array(
         this.story && this.story.parameters ? this.story.parameters.map(n => {
           return this.initParameter(n);
@@ -63,11 +58,10 @@ export class StoryComponent implements OnInit {
 
   initParameter(parameter = null) {
     const fields = {
-      paramName: [''],
-      paramEntityType: [''],
-      paramRequired: [''],
-      prompt: [''],
-      _id: ['']
+      name: [''],
+      type: [''],
+      required: [''],
+      prompt: ['']
     };
     const g = this.fb.group(fields);
     if (parameter) {
@@ -81,10 +75,29 @@ export class StoryComponent implements OnInit {
     control.removeAt(i);
   }
 
+
+  initApiDetails(parameter = null) {
+    const fields = {
+
+      isJson: [''],
+      url: [''],
+      requestType: [''],
+      jsonData: ['']
+    };
+    const g = this.fb.group(fields);
+    if (parameter) {
+      // setdataform
+    }
+    return g;
+  }
+
   save() {
     const form = this.storyForm.value;
     if (form._id && form._id.$oid) {
       form._id = form._id.$oid;
+    }
+    if (!this.apiTrigger()) {
+      delete form.apiDetails;
     }
 
     this.storyService.saveStory(form)
@@ -94,6 +107,10 @@ export class StoryComponent implements OnInit {
           this.afterSave(c);
         }
       })
+  }
+
+  apiTrigger() {
+    return this.storyForm.value.apiTrigger;
   }
 
 }
