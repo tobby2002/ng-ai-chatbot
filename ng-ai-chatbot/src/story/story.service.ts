@@ -49,6 +49,10 @@ export class StoryService extends CoreService {
     return this.doDelete(`/stories/${id}`, {});
   }
 
+  getTrainStory(id) {
+    return this.doGet(`/train/data/${id}`);
+  }
+
   /**
    *
    * @param sentences ex.: i'm searching product

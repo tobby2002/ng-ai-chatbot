@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { StoryService } from './story.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   // tslint:disable-next-line:component-selector
   selector: 'ng-ai-chatbot-train',
   templateUrl: './train.component.html',
-  // styleUrls: ['./train.component.css']
+  styleUrls: ['./train.component.css']
 })
 export class TrainComponent implements OnInit {
 
@@ -15,6 +15,12 @@ export class TrainComponent implements OnInit {
 
   testForm: FormGroup;
   testFormFields: any;
+
+  @Input()
+  story;
+
+  trainStory;
+
   constructor(
     public fb: FormBuilder,
     public storyService: StoryService) {
@@ -32,6 +38,9 @@ export class TrainComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.story) {
+      this.trainStory = this.storyService.getTrainStory(this.story.id);
+    }
   }
 
   addTest() {

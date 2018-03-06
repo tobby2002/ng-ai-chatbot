@@ -48,7 +48,7 @@ export class StoriesComponent implements OnInit {
 
   train(story) {
     const dialogRef = this.dialog.open(TrainDialogComponent, {
-      width: '90%',
+      width: '99%',
       data: { story: story }
     });
 
