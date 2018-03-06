@@ -49,16 +49,12 @@ export class StoryService extends CoreService {
     return this.doDelete(`/stories/${id}`, {});
   }
 
-  getTrainStory(id) {
-    return this.doGet(`/train/data/${id}`);
-  }
-
   /**
    *
    * @param sentences ex.: i'm searching product
    */
   startLabeling(sentences) {
-    return this.doPost(`/core/posTagAndLabel`, { sentences });
+    return this.doPost(`/core/posTagAndLabel?json=true`, { sentences });
   }
 
   /**

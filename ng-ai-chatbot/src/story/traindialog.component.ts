@@ -13,7 +13,11 @@ export class TrainDialogComponent {
 
     constructor(
         public dialogRef: MatDialogRef<TrainDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) { }
+        @Inject(MAT_DIALOG_DATA) public data: any) {
+        if (data && data.story) {
+            this.story = data.story;
+        }
+    }
 
     close(): void {
         this.dialogRef.close();

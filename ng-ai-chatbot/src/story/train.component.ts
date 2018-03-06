@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./train.component.css']
 })
 export class TrainComponent implements OnInit {
+  message;
 
   trainForm: FormGroup;
   trainFormFields: any;
@@ -19,7 +20,7 @@ export class TrainComponent implements OnInit {
   @Input()
   story;
 
-  trainStory;
+  labelled;
 
   constructor(
     public fb: FormBuilder,
@@ -38,8 +39,11 @@ export class TrainComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.story);
     if (this.story) {
-      this.trainStory = this.storyService.getTrainStory(this.story.id);
+      if (this.story._id && this.story._id.$oid) {
+        this.story._id = this.story._id.$oid;
+      }
     }
   }
 
@@ -48,11 +52,36 @@ export class TrainComponent implements OnInit {
   }
 
   buildModel() {
-
+    this.storyService.buildStory(this.story._id)
+      .then(c => {
+        this.message = 'Build sucessfull';
+      })
+      .catch(c => {
+        this.message = 'Error on Building';
+      })
   }
 
   clear() {
-
+    this.trainForm.reset();
   }
+
+  startLabeling() {
+    const form = this.trainForm.value;
+    this.storyService.startLabeling(form.input)
+      .then(c => {
+        this.labelled = c;
+        // this.message = 'Build sucessfull';
+      })
+      .catch(c => {
+        this.message = 'Error on labelling';
+      })
+  }
+
+  deleteSetence(i) {
+    const array = this.story.labeledSentences;
+    array.splice(i, 1);
+  }
+
+
 
 }
