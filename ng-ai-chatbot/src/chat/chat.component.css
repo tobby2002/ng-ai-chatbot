@@ -1,4 +1,4 @@
-@import "../flexboxgrid.css";
+@import "../core/flexboxgrid.css";
 
 .textright {
     text-align: right;

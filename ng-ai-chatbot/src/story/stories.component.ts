@@ -8,7 +8,7 @@ import { TrainDialogComponent } from './traindialog.component';
   // tslint:disable-next-line:component-selector
   selector: 'ng-ai-chatbot-stories',
   templateUrl: './stories.component.html',
-  // styleUrls: ['./stories.component.css']
+  styleUrls: ['./stories.component.css']
 })
 export class StoriesComponent implements OnInit {
 
@@ -25,13 +25,14 @@ export class StoriesComponent implements OnInit {
 
   openDialog(story = null): void {
     const dialogRef = this.dialog.open(StoryDialogComponent, {
-      width: '250px',
+      width: '90%',
       data: { story: story }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
+      this.ngOnInit();
     });
   }
 
@@ -47,7 +48,7 @@ export class StoriesComponent implements OnInit {
 
   train(story) {
     const dialogRef = this.dialog.open(TrainDialogComponent, {
-      width: '250px',
+      width: '90%',
       data: { story: story }
     });
 
@@ -60,15 +61,14 @@ export class StoriesComponent implements OnInit {
   delete(story) {
     if (confirm('Are u sure want to delete this story?')) {
       this.storyService.deleteStory(story._id.$oid).then((s: any) => {
-        this.stories = s;
+        this.ngOnInit();
       });
     }
   }
 
   build(story) {
     this.storyService.buildStory(story._id.$oid).then((s: any) => {
-      this.stories = s;
+      this.ngOnInit();
     });
   }
-
 }

@@ -13,8 +13,7 @@ export class TrainDialogComponent {
         public dialogRef: MatDialogRef<TrainDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    onNoClick(): void {
+    close(): void {
         this.dialogRef.close();
     }
-
 }

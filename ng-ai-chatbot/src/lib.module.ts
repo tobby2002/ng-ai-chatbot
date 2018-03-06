@@ -9,13 +9,14 @@ import { StoryComponent } from './story/story.component';
 import {
   MatToolbarModule, MatIconModule, MatCardModule,
   MatButtonModule, MatDialogModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
-  MatListModule, MatGridListModule
+  MatListModule, MatGridListModule, MatSelectModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { StoryDialogComponent } from './story/storydialog.component';
 import { TrainDialogComponent } from './story/traindialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoreService } from './core/core.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatInputModule, MatCardModule, MatButtonModule, MatDialogModule,
-    MatCheckboxModule, MatIconModule, MatListModule, MatGridListModule,
+    MatCheckboxModule, MatIconModule, MatListModule, MatGridListModule, MatSelectModule,
     MatToolbarModule, MatIconModule, MatFormFieldModule // MatToolbarModule
   ],
   declarations: [
@@ -36,7 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ChatComponent, StoriesComponent, StoryComponent, TrainComponent,
     StoryDialogComponent, TrainDialogComponent
   ],
-  providers: [StoryService, ChatService],
+  providers: [CoreService, StoryService, ChatService],
   entryComponents: [StoryDialogComponent, TrainDialogComponent]
 })
 export class NgAiChatbot {

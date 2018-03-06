@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
 
 @Injectable()
 export class CoreService {
@@ -11,15 +12,12 @@ export class CoreService {
     return new HttpHeaders(headerVals);
   }
 
-  doRead(method: string, url: string, query = null, resJson = true) {
+
+  doGet(url: string, query = null, resJson = true) {
     return new Promise((resolve, reject) => {
       const headers = this.doHeaders(null);
       const finalUrl = this.doQueryString(CoreService.apiUrl + url, query);
-      // console.log(`GET: ${finalUrl}`);
       const promise = this.http.get(finalUrl, { headers: headers });
-      // if (resJson) {
-      //   promise = promise.then(res => res.json());
-      // }
       return promise.subscribe((data: any) => {
         if (data && data._body) {
           resolve(JSON.parse(data._body));
@@ -33,12 +31,22 @@ export class CoreService {
     });
   }
 
-  doGet(url: string, query = null, resJson = true) {
-    return this.doRead('get', url, query, resJson);
-  }
-
   doDelete(url: string, query = null, resJson = true) {
-    return this.doRead('delete', url, query, resJson);
+    return new Promise((resolve, reject) => {
+      const headers = this.doHeaders(null);
+      const finalUrl = this.doQueryString(CoreService.apiUrl + url, query);
+      const promise = this.http.delete(finalUrl, { headers: headers });
+      return promise.subscribe((data: any) => {
+        if (data && data._body) {
+          resolve(JSON.parse(data._body));
+        } else {
+          resolve(data);
+        }
+      },
+        error => {
+          reject(error);
+        });
+    });
   }
 
 
@@ -72,7 +80,13 @@ export class CoreService {
         formData = JSON.stringify(data);
       }
       console.log(`POST: ${CoreService.apiUrl + url}`);
-      return this.http.post(CoreService.apiUrl + url, formData, { headers: headers })
+      let prom;
+      if (method === 'post') {
+        prom = this.http.post(CoreService.apiUrl + url, formData, { headers: headers });
+      } else {
+        prom = this.http.put(CoreService.apiUrl + url, formData, { headers: headers });
+      }
+      return prom
         // .map(res => res.json())
         .subscribe((dataAnswer: any) => {
           if (dataAnswer && dataAnswer._body) {
@@ -98,6 +112,29 @@ export class CoreService {
       }
     }
     return url;
+  }
+
+
+
+
+  /**
+   * [setDataForm description]  Ex.: this.setDataForm(this.orderForm,this.orderFormFields,this.order);
+   * @param  {[type]} form ex.: this.orderForm
+   * @param  {[type]} keys ex.: [name: [], title: []]
+   * @param  {[type]} data ex.: this.order
+   * @return {[type]}      [description]
+   */
+  setDataForm(form, keys, data) {
+    if (!data) { return; }
+    const formData = {};
+    for (const key in keys) {
+      if (key in data) {
+        const value = data[key];
+        formData[key] = value;
+      } else { formData[key] = ''; }
+    }
+    // (<FormGroup>form).setValue(formData, { onlySelf: true });
+    (<FormGroup>form).patchValue(formData, { onlySelf: true });
   }
 
 }

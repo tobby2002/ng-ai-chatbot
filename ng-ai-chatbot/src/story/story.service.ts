@@ -4,6 +4,13 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class StoryService extends CoreService {
+  public static storyTypes = {
+    'mobile': 'Mobile number',
+    'email': 'Email',
+    'free_text': 'Free Text',
+    'number': 'Number',
+    'list': 'List',
+  };
 
   constructor(public http: HttpClient) {
     super(http);
@@ -17,8 +24,21 @@ export class StoryService extends CoreService {
     return this.doGet(`/stories/edit/${id}`);
   }
 
-  updateStory(id) {
-    return this.doPut(`/stories/${id}`, {});
+  saveStory(story) {
+    if (story._id) {
+      return this.updateStory(story);
+    } else {
+      delete story._id;
+      return this.createStory(story);
+    }
+  }
+
+  createStory(story) {
+    return this.doPut(`/stories/`, story);
+  }
+
+  updateStory(story) {
+    return this.doPut(`/stories/${story._id}`, story);
   }
 
   buildStory(id) {
