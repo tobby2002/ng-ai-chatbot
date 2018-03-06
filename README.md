@@ -12,6 +12,8 @@ To install this library with npm, run below command:
 
 $ npm install --save ng-ai-chatbot
 
+See the npm package list: npmjs.com/package/ng-ai-chatbot
+
 ## Usage
 
 ### Configuration
@@ -74,7 +76,35 @@ If you want a view to manage the stories, call component
 Demo component files are included in Git Project.
 
 Demo Project:
-[https://github.com/mariohmol/ng-ai-chatbot/tree/master/src/app/demo)
+* https://github.com/mariohmol/ng-ai-chatbot/tree/master/src/app/demo
+
+# Colaborate
+
+Want to help and make it better?
+You can make your questions at: 
+* https://gitter.im/ai-chatbot-framework/Lobby
+
+And to start working, fork, clone and run:
+
+Install all dependencies
+
+* npm install
+
+Make the lib:
+
+* npm run build:lib
+
+Make the demo app:
+
+* npm run build:app
+
+Start demo app:
+
+* npm run start
+
+Start the a-chatbot server
+
+* npm run server
 
 # License
 
