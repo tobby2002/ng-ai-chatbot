@@ -3,6 +3,8 @@
 <button mat-button (click)="show='chat'">Show Chat</button>
 <button mat-button (click)="debug=true">Show Chat Debug</button>
 <button mat-button (click)="show='stories'">Manage Stories</button>
+<button mat-button (click)="show='bots'">Manage Bots</button>
 
-<ng-ai-chatbot-chat [debug]="debug" *ngIf="show === 'chat'"></ng-ai-chatbot-chat>
-<ng-ai-chatbot-stories *ngIf="show === 'stories'"></ng-ai-chatbot-stories>
+<ng-ai-chatbot-chat [bot]="bot" [debug]="debug" *ngIf="show === 'chat'"></ng-ai-chatbot-chat>
+<ng-ai-chatbot-stories [bot]="bot" *ngIf="show === 'stories'"></ng-ai-chatbot-stories>
+<ng-ai-chatbot-bots *ngIf="show === 'bots'" [storiesBot]="setBotStories.bind(this)" ></ng-ai-chatbot-bots>

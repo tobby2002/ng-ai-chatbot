@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { StoryService } from './story.service';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { StoryDialogComponent } from './storydialog.component';
@@ -11,6 +11,8 @@ import { TrainDialogComponent } from './traindialog.component';
   styleUrls: ['./stories.component.css']
 })
 export class StoriesComponent implements OnInit {
+  @Input()
+  bot;
 
   stories: any;
 
@@ -18,7 +20,11 @@ export class StoriesComponent implements OnInit {
     public storyService: StoryService) { }
 
   ngOnInit() {
-    this.storyService.getStories().then((s: any) => {
+    let botId;
+    if (this.bot && this.bot._id) {
+      botId = this.bot._id.$oid;
+    }
+    this.storyService.getStories(botId).then((s: any) => {
       this.stories = s;
     });
   }

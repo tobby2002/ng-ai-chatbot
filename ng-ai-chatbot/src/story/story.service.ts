@@ -16,8 +16,12 @@ export class StoryService extends CoreService {
     super(http);
   }
 
-  getStories() {
-    return this.doGet(`/stories/`);
+  getStories(botId) {
+    let url = '/stories/';
+    if (botId) {
+      url = `${url}?botId=${botId}`;
+    }
+    return this.doGet(url);
   }
 
   getStory(id) {
@@ -34,7 +38,7 @@ export class StoryService extends CoreService {
   }
 
   createStory(story) {
-    return this.doPut(`/stories/`, story);
+    return this.doPost(`/stories/`, story);
   }
 
   updateStory(story) {
@@ -62,8 +66,29 @@ export class StoryService extends CoreService {
    * @param storyId  ex.:59fddff51ec5e81bf9d6e021
    * @param labeledSentence   ex.: [["i","NN","O"],["'m","VBP","O"],["searching","VBG","O"],["product","NN","O"]]
    */
-  addToTestSet(storyId, labeledSentence) {
-    return this.doPost(`/train/insertLabeledSentence`, { storyId, labeledSentence });
+  addToTestSet(storyId, labeledSentence, botId = 'default') {
+    return this.doPost(`/train/insertLabeledSentence`, { storyId, botId, labeledSentence });
   }
 
+
+  getBots() {
+    return this.doGet(`/stories/bot`);
+  }
+
+  saveBot(bot) {
+    if (bot._id) {
+      return this.updateBot(bot);
+    } else {
+      delete bot._id;
+      return this.createBot(bot);
+    }
+  }
+
+  createBot(story) {
+    return this.doPost(`/stories/bot`, story);
+  }
+
+  updateBot(story) {
+    return this.doPut(`/stories/bot/${story._id}`, story);
+  }
 }

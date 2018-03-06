@@ -9,8 +9,8 @@ export class ChatService extends CoreService {
     super(http);
   }
 
-  send(intent) {
-    return this.doPost(`/api/v1`, intent);
+  send(intent, botId = 'default') {
+    return this.doPost(`/api/v1?botId=${botId}`, intent);
   }
 
 }

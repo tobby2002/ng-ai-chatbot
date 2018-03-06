@@ -17,6 +17,7 @@ import { TrainDialogComponent } from './story/traindialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreService } from './core/core.service';
+import { BotsComponent } from './story/bots.component';
 
 
 @NgModule({
@@ -31,14 +32,14 @@ import { CoreService } from './core/core.service';
   ],
   declarations: [
     ChatComponent, StoriesComponent, StoryComponent, TrainComponent,
-    StoryDialogComponent, TrainDialogComponent
+    StoryDialogComponent, TrainDialogComponent, BotsComponent
   ],
   exports: [
     ChatComponent, StoriesComponent, StoryComponent, TrainComponent,
-    StoryDialogComponent, TrainDialogComponent
+    StoryDialogComponent, TrainDialogComponent, BotsComponent
   ],
   providers: [CoreService, StoryService, ChatService],
-  entryComponents: [StoryDialogComponent, TrainDialogComponent]
+  entryComponents: [StoryDialogComponent, TrainDialogComponent, BotsComponent]
 })
 export class NgAiChatbot {
 

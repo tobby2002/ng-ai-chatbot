@@ -18,6 +18,9 @@ export class ChatComponent implements OnInit {
   chatFormFields: any;
 
   @Input()
+  bot;
+
+  @Input()
   debug = false;
 
   @Input()
@@ -45,8 +48,11 @@ export class ChatComponent implements OnInit {
       'input': 'init_conversation',
       'missingParameters': []
     };
-
-    this.chatService.send(this.chatInitial)
+    let botId;
+    if (this.bot && this.bot._id) {
+      botId = this.bot._id.$oid;
+    }
+    this.chatService.send(this.chatInitial, botId)
       .then((c: any) => {
         c.owner = 'chat';
         this.changeCurrent(c);
