@@ -1,6 +1,6 @@
 {
-  "name": "ng-packaged",
-  "version": "0.0.0",
+  "name": "ng-ai-chatbot",
+  "version": "1.5.12",
   "private": true,
   "license": "MIT",
   "scripts": {
