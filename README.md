@@ -4,7 +4,7 @@ Angular 5 components to create chat and to manage stories, train the bot and bui
 
 Working with latest Angular 5. 
 
-![Demo Image](/src/assets/printDemo.png)
+![Demo Image](/src/assets/print.png)
 
 ## Installation
 
