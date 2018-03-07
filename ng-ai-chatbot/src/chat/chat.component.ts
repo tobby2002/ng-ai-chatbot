@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   // tslint:disable-next-line:component-selector
   selector: 'ng-ai-chatbot-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css', './flexboxgrid.css']
 })
 export class ChatComponent implements OnInit {
   chatInitial;

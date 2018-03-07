@@ -7,7 +7,7 @@ import { CoreService } from '../core/core.service';
   // tslint:disable-next-line:component-selector
   selector: 'ng-ai-chatbot-story',
   templateUrl: './story.component.html',
-  styleUrls: ['./story.component.css']
+  styleUrls: ['./story.component.css', './flexboxgrid.css']
 })
 export class StoryComponent implements OnInit {
   storyForm: FormGroup;

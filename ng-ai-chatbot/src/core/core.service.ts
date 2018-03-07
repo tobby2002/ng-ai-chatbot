@@ -114,16 +114,6 @@ export class CoreService {
     return url;
   }
 
-
-
-
-  /**
-   * [setDataForm description]  Ex.: this.setDataForm(this.orderForm,this.orderFormFields,this.order);
-   * @param  {[type]} form ex.: this.orderForm
-   * @param  {[type]} keys ex.: [name: [], title: []]
-   * @param  {[type]} data ex.: this.order
-   * @return {[type]}      [description]
-   */
   setDataForm(form, keys, data) {
     if (!data) { return; }
     const formData = {};

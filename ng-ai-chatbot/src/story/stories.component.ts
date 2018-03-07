@@ -8,7 +8,7 @@ import { TrainDialogComponent } from './traindialog.component';
   // tslint:disable-next-line:component-selector
   selector: 'ng-ai-chatbot-stories',
   templateUrl: './stories.component.html',
-  styleUrls: ['./stories.component.css']
+  styleUrls: ['./stories.component.css', './flexboxgrid.css']
 })
 export class StoriesComponent implements OnInit {
   @Input()

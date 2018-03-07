@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   // tslint:disable-next-line:component-selector
   selector: 'ng-ai-chatbot-bots',
   templateUrl: './bots.component.html',
-  styleUrls: ['./bots.component.css']
+  styleUrls: ['./bots.component.css', './flexboxgrid.css']
 })
 export class BotsComponent implements OnInit {
   botForm: FormGroup;
