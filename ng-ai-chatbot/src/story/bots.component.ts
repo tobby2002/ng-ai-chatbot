@@ -16,9 +16,13 @@ export class BotsComponent implements OnInit {
   botFormFields: any;
   bots: any;
   message;
+  showAddForm = false;
 
   @Input()
   storiesBot;
+
+  @Input()
+  afterSave;
 
   constructor(public dialog: MatDialog,
     public fb: FormBuilder,
@@ -27,7 +31,9 @@ export class BotsComponent implements OnInit {
   ngOnInit() {
     this.botFormFields = {
       _id: [''],
-      botName: ['']
+      botName: [''],
+      username: [''],
+      password: ['']
     };
     this.botForm = this.fb.group(this.botFormFields);
 
@@ -49,11 +55,24 @@ export class BotsComponent implements OnInit {
 
   }
 
+  login() {
+    const form = this.botForm.value;
+    localStorage.botToken = btoa(`${form.username}:${form.password}`);
+    this.storyService.getBots()
+      .then(c => {
+        this.bots = c;
+      })
+  }
+
   save() {
     const form = this.botForm.value;
     this.storyService.saveBot(form)
       .then(c => {
+        if (this.afterSave) {
+          this.afterSave(c);
+        }
         this.ngOnInit();
+        this.showAddForm = false;
       })
       .catch(c => {
         this.message = 'Error saving bot';

@@ -9,6 +9,9 @@ export class CoreService {
 
   doHeaders(data: any = null) {
     const headerVals: any = { 'Content-Type': 'application/json' };
+    if (localStorage.botToken) {
+      headerVals.Authorization = `Basic ${localStorage.botToken}`;
+    }
     return new HttpHeaders(headerVals);
   }
 
