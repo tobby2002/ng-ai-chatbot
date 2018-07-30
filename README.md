@@ -1,6 +1,6 @@
 # Angular AI ChatBot 
 
-# **** DEPRECATDED****
+# **** DEPRECATED****
 
 The main repo has his own angular version
 
