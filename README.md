@@ -1,5 +1,11 @@
 # Angular AI ChatBot 
 
+# **** DEPRECATDED****
+
+The main repo has his own angular version
+
+* https://github.com/alfredfrancis/ai-chatbot-framework/tree/master/frontend
+
 Angular 5 components to create chat and to manage stories, train the bot and build it.
 
 Working with latest Angular 5. 
